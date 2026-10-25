@@ -1,0 +1,8 @@
+# One line ending everywhere. A pipeline that parses SRT and FEC-style files
+# has no business being ambiguous about CRLF in its own sources.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.wav binary
+*.mp4 binary
+*.onnx binary
