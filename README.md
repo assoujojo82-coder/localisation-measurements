@@ -19,9 +19,12 @@ Wiring Whisper to a text-to-speech model is a weekend. The problem is that the
 output of that weekend is quietly unusable, and watching it once will not tell
 you. Three things go wrong and none of them look like a bug:
 
-**The translation is correct and it is twenty per cent too long.** English into
-French, German or Spanish typically expands by 15–25 %. The line is right; it
-cannot be said in the time the mouth is open.
+**The translation is correct and it does not fit.** The received wisdom is
+that English expands by 15–25 % into French. Measured on real Opus-MT output
+here, the aggregate was **0.96 — no expansion** — and **only 4 of 12 lines
+fitted** anyway: four needed shortening, one by **2.38×**. The average tells
+you nothing; the dispersion is the job. See [exemples/](exemples/) for the run
+and how to reproduce it.
 
 **The live interpreter falls behind, and keeps falling behind.** If translated
 speech takes longer to say than the original, every sentence widens the gap.
@@ -132,6 +135,20 @@ Open weights are not one licence, and two of them change what you may build.
 - **Piper's maintained release is GPL-3.0** — run it as a separate process
   rather than importing it, and read the voices' own licences, which often
   differ from the engine's.
+
+## A measurement that corrected me
+
+Before trusting the premise, I checked it against a real model. Opus-MT en->fr,
+running locally, twelve lines of plain dialogue. The received figure is that
+English expands 15-25 % into French; the aggregate came out at **0.96 - no
+expansion** - and **only 4 of the 12 lines fitted** anyway. Four needed
+shortening, one by **2.38x**.
+
+The average did not just lack precision, it pointed the wrong way. The
+dispersion is the job, which is the whole argument for a per-line check.
+
+[exemples/](exemples/) has the run, the output, the honest line between what
+is measured and what is modelled, and how to reproduce it.
 
 ## Provenance and timeline
 
