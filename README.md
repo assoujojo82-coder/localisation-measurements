@@ -147,8 +147,20 @@ shortening, one by **2.38x**.
 The average did not just lack precision, it pointed the wrong way. The
 dispersion is the job, which is the whole argument for a per-line check.
 
-[exemples/](exemples/) has the run, the output, the honest line between what
-is measured and what is modelled, and how to reproduce it.
+Then the other half: can a local model fix the lines the measurement rejects?
+**Gemma 3 4B through Ollama, on one laptop.** Asked for a syllable budget it
+fixed **0 of 4**. Asked for six variants with the counter picking, **4 of 4** -
+except two of those "fits" were far too short, which is a different defect
+wearing a success badge, and that bug was mine. Selecting inside the acceptable
+window instead: **3 of 4**, with the fourth honestly refused because 714 ms
+leaves room for three syllables and no variant both fitted and filled it.
+
+The model proposes, the measurement disposes, the human decides. That is not a
+slogan here, it is the three numbers above.
+
+[exemples/](exemples/) has every run, the output, the honest line between what
+is measured and what is modelled, what is still wrong with the lines that
+passed, and how to reproduce all of it.
 
 ## Provenance and timeline
 

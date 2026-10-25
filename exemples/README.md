@@ -99,3 +99,100 @@ The dialogue is twelve invented lines, written to be ordinary spoken dialogue
 rather than anything quotable. Swap them for your own corpus — twenty lines of
 your actual material will tell you more about your language pair than any
 published figure, including this one.
+
+---
+
+# Then: can a local model fix the lines the measurement rejected?
+
+```bash
+ollama pull gemma3:4b
+python exemples/adapter_avec_gemma.py
+```
+
+Four lines were rejected as too long. Shortening a line while keeping its
+register is the one step a script cannot do, so this is where a model earns
+its place. **Gemma 3 4B, through Ollama, on this laptop.** It took three
+attempts to get the loop right, and both failures are worth more than the
+final number.
+
+## Attempt 1 — ask the model for a syllable budget: 0 of 4
+
+The obvious design: "rewrite this in at most 4 syllables", three tries, keep
+the best.
+
+```
+[001] avant ( 9 syll) On devrait y aller maintenant.
+      apres ( 5 syll) Allons-y, ca va.              -> 1.32x  TOUJOURS TROP LONG
+[002] avant (10 syll) Je t'avais dit que ca arriverait.
+      apres (12 syll) Je t'avais prevenu que ca se produirait.  -> 1.81x
+```
+
+**Nothing fit, and line 002 came back longer than it went in.** A language
+model does not count syllables, so asking it to respect a syllable budget asks
+for the one thing it cannot do.
+
+## Attempt 2 — ask for variants, let the counter pick: 4 of 4, and still wrong
+
+Same model, different architecture: ask for six variants from closest to most
+elliptical, measure each, keep the best. Suddenly all four "fit".
+
+Except two of them fit by being **far too short** — 0.53x and 0.70x, under the
+0.80 floor this project defines, with the mouth still moving after the line is
+over. The selection rule was "shortest wins", which does not fix *too long*,
+it trades it for *too short*.
+
+**A criterion that reports success for the wrong reason is worse than one that
+reports failure.** That bug was in my own code, and the only thing that
+surfaced it was reading the ratios instead of the verdict.
+
+## Attempt 3 — select inside the acceptable window: 3 of 4
+
+The window is `plancher` to `1 + tolerance`, here 0.80x to 1.06x, and inside
+it the variant that best fills the time wins. Long is penalised harder than
+short, because a rushed delivery is heard immediately.
+
+```
+fenetre acceptable 0.80x a 1.06x, 6 variantes par appel, 3 appels au plus
+
+[001] 714 ms, 3.0 a 4.0 syllabes
+      avant ( 9 syll) On devrait y aller maintenant.
+      apres ( 3 syll) On y va.          -> 0.79x  DESORMAIS TROP COURT  (18 variantes)
+[002] 1250 ms, 5.3 a 7.0 syllabes
+      avant (10 syll) Je t'avais dit que ca arriverait.
+      apres ( 7 syll) Ca arrive, je t'avais dit.   -> 1.06x  TIENT
+[008] 714 ms, 3.0 a 4.0 syllabes
+      avant ( 5 syll) Ce n'etait pas moi.
+      apres ( 4 syll) Ce n'est pas moi.            -> 1.06x  TIENT
+[011] 2143 ms, 9.1 a 12.0 syllabes
+      avant (13 syll) Et les autres, on ne peut pas les abandonner.
+      apres (11 syll) Et les autres, on ne les abandonne pas.  -> 0.97x  TIENT
+
+3/4 dans la fenetre apres adaptation
+```
+
+**Three of four, and the fourth is honestly refused.** Line 001 has 714 ms for
+three to four syllables; across 18 measured variants the model never found one
+that both fits and fills it. That line goes to a human, which is the correct
+outcome, and it is the outcome a pipeline that trusted the model would have
+hidden.
+
+## What is still wrong with the three that passed
+
+Read them, do not just count them.
+
+- **[008]** "Ce n'etait pas moi." became "Ce n'est pas moi." — past to present.
+  It fits and it is a different statement. A timing check cannot catch that.
+- **[002]** "Ca arrive, je t'avais dit." is colloquial to the point of being
+  clipped; whether it suits the character is a judgement about the film.
+- **[011]** is the only one I would ship without argument.
+
+So the loop produces **candidates worth reviewing**, not finished dialogue.
+That is what "the model proposes, the measurement disposes, the human decides"
+means in practice, and it is why the tool prints what it changed rather than
+quietly writing it back.
+
+## Cost
+
+Everything above ran on one laptop: Opus-MT (~300 MB) and Gemma 3 4B (3.4 GB)
+on an RTX 4060 Laptop, no account, no per-minute billing, no audio leaving the
+machine. That is the argument for open weights, in a form you can re-run.

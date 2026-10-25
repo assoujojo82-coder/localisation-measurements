@@ -1,0 +1,134 @@
+{
+ "langue_source": "en",
+ "langue_cible": "fr",
+ "debit": {
+  "fr": 5.3
+ },
+ "tolerance_etirement": 0.06,
+ "segments": [
+  {
+   "id": "001",
+   "debut": 1.0,
+   "fin": 1.714,
+   "locuteur": "ANNA",
+   "voix": "FR-F-01",
+   "original": "We should go now.",
+   "traduction": "On devrait y aller maintenant.",
+   "traduction_adaptee": "On y va.",
+   "adapte_par": "gemma3:4b",
+   "ratio_apres": 0.793,
+   "tient_apres_adaptation": false
+  },
+  {
+   "id": "002",
+   "debut": 2.114,
+   "fin": 3.364,
+   "locuteur": "BORIS",
+   "voix": "FR-M-01",
+   "original": "I told you this would happen.",
+   "traduction": "Je t'avais dit que ça arriverait.",
+   "traduction_adaptee": "Ça arrive, je t'avais dit.",
+   "adapte_par": "gemma3:4b",
+   "ratio_apres": 1.057,
+   "tient_apres_adaptation": true
+  },
+  {
+   "id": "003",
+   "debut": 3.764,
+   "fin": 5.729,
+   "locuteur": "ANNA",
+   "voix": "FR-F-01",
+   "original": "Listen to me. There is no time left.",
+   "traduction": "Écoute-moi, il ne reste plus de temps."
+  },
+  {
+   "id": "004",
+   "debut": 6.129,
+   "fin": 7.736,
+   "locuteur": "BORIS",
+   "voix": "FR-M-01",
+   "original": "Who else knows about the money?",
+   "traduction": "Qui d'autre sait pour l'argent ?"
+  },
+  {
+   "id": "005",
+   "debut": 8.136,
+   "fin": 9.921,
+   "locuteur": "ANNA",
+   "voix": "FR-F-01",
+   "original": "Nobody. I made sure of it.",
+   "traduction": "Personne, je m'en suis assuré."
+  },
+  {
+   "id": "006",
+   "debut": 10.321,
+   "fin": 11.929,
+   "locuteur": "BORIS",
+   "voix": "FR-M-01",
+   "original": "Then why is he still following us?",
+   "traduction": "Alors pourquoi nous suit-il encore ?"
+  },
+  {
+   "id": "007",
+   "debut": 12.329,
+   "fin": 13.936,
+   "locuteur": "ANNA",
+   "voix": "FR-F-01",
+   "original": "Because somebody talked.",
+   "traduction": "Parce que quelqu'un a parlé."
+  },
+  {
+   "id": "008",
+   "debut": 14.336,
+   "fin": 15.05,
+   "locuteur": "BORIS",
+   "voix": "FR-M-01",
+   "original": "It was not me.",
+   "traduction": "Ce n'était pas moi.",
+   "traduction_adaptee": "Ce n'est pas moi.",
+   "adapte_par": "gemma3:4b",
+   "ratio_apres": 1.057,
+   "tient_apres_adaptation": true
+  },
+  {
+   "id": "009",
+   "debut": 15.45,
+   "fin": 16.521,
+   "locuteur": "ANNA",
+   "voix": "FR-F-01",
+   "original": "I never said it was.",
+   "traduction": "Je n'ai jamais dit ça."
+  },
+  {
+   "id": "010",
+   "debut": 16.921,
+   "fin": 18.886,
+   "locuteur": "BORIS",
+   "voix": "FR-M-01",
+   "original": "We have to leave the city tonight.",
+   "traduction": "Nous devons quitter la ville ce soir."
+  },
+  {
+   "id": "011",
+   "debut": 19.286,
+   "fin": 21.429,
+   "locuteur": "ANNA",
+   "voix": "FR-F-01",
+   "original": "And the others? We cannot just abandon them.",
+   "traduction": "Et les autres, on ne peut pas les abandonner.",
+   "traduction_adaptee": "Et les autres, on ne les abandonne pas.",
+   "adapte_par": "gemma3:4b",
+   "ratio_apres": 0.968,
+   "tient_apres_adaptation": true
+  },
+  {
+   "id": "012",
+   "debut": 21.829,
+   "fin": 23.614,
+   "locuteur": "BORIS",
+   "voix": "FR-M-01",
+   "original": "They made their choice. We make ours.",
+   "traduction": "Ils ont fait leur choix."
+  }
+ ]
+}
