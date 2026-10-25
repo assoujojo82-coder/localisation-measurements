@@ -1,0 +1,34 @@
+Localisation measurements
+Copyright (C) 2026 SYNERGIELOC
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License along
+with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+---
+
+Why AGPL-3.0 and not a permissive licence
+
+These four checks are the product of measurement work, and the AGPL keeps them
+and their derivatives open - including when they are reached over a network,
+which a permissive licence does not. Section 13 is the point: offer this as a
+service and your users are entitled to the source of your version.
+
+If you want to use this code in a closed product or a closed service, that is
+a reasonable thing to want and the AGPL is not meant to stop you: ask the
+copyright holder for other terms.
+
+---
+
+This repository contains no model weights. The models a pipeline built on it
+may use carry their own licences, some of which restrict commercial use.
+See MODELS.md.
